@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Impact Dashboard - Growing Together</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* General Styling */
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --background-color: #ecf0f1;
+            --card-bg-color: #ffffff;
+            --text-color: #34495e;
+            --light-gray: #bdc3c7;
+            --positive-growth: #27ae60; /* Green */
+            --negative-growth: #e74c3c; /* Red */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px; /* Narrower container for a clean, focused list */
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation Bar (Consistent) */
+        .navbar {
+            background-color: var(--card-bg-color);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-item a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .nav-item a:hover {
+            color: var(--secondary-color);
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: var(--card-bg-color);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            list-style: none;
+            min-width: 300px;
+            border-radius: 5px;
+            padding: 0.5rem 0;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+        
+        .dropdown-menu li a {
+            display: block;
+            padding: 0.75rem 1.5rem;
+            white-space: nowrap;
+        }
+        
+        .dropdown-menu li a span {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--light-gray);
+            font-weight: 400;
+        }
+
+        /* --- NEW: Dashboard Layout --- */
+        .dashboard-container {
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .page-title {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        .page-subtitle {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 3rem;
+        }
+
+        /* NEW: Impact Block Styling */
+        .impact-blocks-container {
+            display: grid;
+            gap: 2rem; /* Space between each block */
+            grid-template-columns: 1fr; /* A single column */
+        }
+        
+        /* This is the style for the blocks our JS will create */
+        .impact-block {
+            background: var(--card-bg-color);
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            padding: 2rem;
+            text-align: left;
+            display: grid;
+            grid-template-areas:
+                "header"
+                "main"
+                "analysis"
+                "footer";
+            gap: 1rem;
+        }
+        
+        .impact-block-header {
+            grid-area: header;
+            border-bottom: 2px solid var(--background-color);
+            padding-bottom: 1rem;
+        }
+
+        .metric-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .ngo-name {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--secondary-color);
+        }
+
+        .impact-block-main {
+            grid-area: main;
+            text-align: center;
+        }
+
+        .current-value {
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .current-value-label {
+            font-size: 0.9rem;
+            color: #777;
+            text-transform: uppercase;
+        }
+
+        .impact-block-analysis {
+            grid-area: analysis;
+            text-align: center;
+        }
+
+        .analysis-text {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+        
+        /* Dynamic classes for analysis text */
+        .growth-positive {
+            color: var(--positive-growth);
+        }
+        .growth-negative {
+            color: var(--negative-growth);
+        }
+        .growth-neutral {
+            color: var(--text-color);
+        }
+
+        .analysis-label {
+            font-size: 0.9rem;
+            color: #777;
+        }
+        
+        .impact-block-footer {
+            grid-area: footer;
+            text-align: right;
+            padding-top: 1rem;
+            border-top: 2px solid var(--background-color);
+        }
+
+        .details-btn {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+        
+        .details-btn:hover {
+            background-color: #2980b9;
+        }
+        
+        .loading-text {
+            font-size: 1.5rem;
+            padding: 3rem 0;
+            color: #777;
+        }
+
+    </style>
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="container">
+            <a href="index.html" class="nav-logo">Growing Together</a>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html">Home</a></li>
+                <li class="nav-item dropdown">
+                    <a href="#">NGOs</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="sankalptaru.html">SankalpTaru Foundation <span>Tree Plantation</span></a></li>
+                        <li><a href="indianredcross.html">Indian Red Cross Society <span>Blood Donation</span></a></li>
+                        <li><a href="pratham.html">Pratham <span>Education for underprivileged children</span></a></li>
+                        <li><a href="akshayapatra.html">Akshaya Patra Foundation <span>Meal Donation</span></a></li>
+                        <li><a href="wateraid.html">Water Aid India <span>Water, Sanitation, & Hygiene</span></a></li>
+                    </ul>
+                </li>
+                <li class="nav-item"><a href="impact-analysis.html">Impact Analysis</a></li>
+                <li class="nav-item"><a href="about.html">About Us</a></li>
+                <li class="nav-item"><a href="pledge.html">Pledge Now</a></li> 
+                <li class="nav-item"><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main class="dashboard-container">
+        <div class="container">
+            <h2 class="page-title">Community Impact Dashboard</h2>
+            <p class="page-subtitle">Year-over-year analysis of our partner initiatives.</p>
+
+            <div class="impact-blocks-container" id="impact-grid">
+                <div class="loading-text">Loading Live Data...</div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            const SHEET_ID = '1GRltIyzzIP8oiFQnzxF0RJGvG7ofbXq7LDLE7gz99XU';
+            const SHEET_URL = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json`;
+
+            // --- SMART CONFIGURATION ---
+            // This matches your sheet rows to the correct NGO names and links
+            // The order MUST match the order in your Google Sheet
+            const DATA_MAP = [
+                { name: 'SankalpTaru Foundation', link: 'sankalptaru.html' },
+                { name: 'Indian Red Cross Society', link: 'indianredcross.html' },
+                { name: 'Pratham', link: 'pratham.html' },
+                { name: 'Akshaya Patra Foundation', link: 'akshayapatra.html' },
+                { name: 'Water Aid India', link: 'wateraid.html' },
+                { name: 'MCOE Community', link: 'pledge.html' } 
+                // This assumes "College Pledges" is your 6th row
+            ];
+            // ---------------------------
+
+            const gridContainer = document.getElementById('impact-grid');
+
+            async function fetchData() {
+                try {
+                    const response = await fetch(SHEET_URL);
+                    let text = await response.text();
+                    
+                    const json = JSON.parse(text.substring(47, text.length - 2));
+                    
+                    const rows = json.table.rows;
+
+                    // Clear the "Loading..." text
+                    gridContainer.innerHTML = '';
+
+                    // Loop through all rows fetched from the sheet
+                    rows.forEach((row, i) => {
+                        // 1. Get data from the sheet
+                        const metricName = row.c[0].v;
+                        const currentValue = row.c[1].v;
+                        const previousValue = row.c[2].v;
+                        
+                        // 2. Get the matching NGO name and link from our map
+                        const ngoName = DATA_MAP[i].name;
+                        const ngoLink = DATA_MAP[i].link;
+
+                        // 3. Calculate Percentage
+                        let percentage = 0;
+                        if (previousValue !== 0 && previousValue !== null) {
+                            percentage = ((currentValue - previousValue) / previousValue) * 100;
+                        }
+                        
+                        let analysisText = '► No Change';
+                        let analysisClass = 'growth-neutral';
+
+                        if (percentage > 0) {
+                            analysisText = `▲ ${percentage.toFixed(1)}% Increase`;
+                            analysisClass = 'growth-positive';
+                        } else if (percentage < 0) {
+                            analysisText = `▼ ${Math.abs(percentage.toFixed(1))}% Decrease`;
+                            analysisClass = 'growth-negative';
+                        } else if (previousValue === 0 || previousValue === null) {
+                            analysisText = 'New Metric';
+                            analysisClass = 'growth-neutral';
+                        }
+                        
+                        // 4. Create the new HTML block
+                        const block = document.createElement('section');
+                        block.className = 'impact-block';
+                        
+                        // 5. Fill the block with our data
+                        block.innerHTML = `
+                            <header class="impact-block-header">
+                                <div class="metric-title">${metricName}</div>
+                                <div class="ngo-name">${ngoName}</div>
+                            </header>
+                            <main class="impact-block-main">
+                                <div class="current-value">${currentValue.toLocaleString()}</div>
+                                <div class="current-value-label">This Year</div>
+                            </main>
+                            <aside class="impact-block-analysis">
+                                <div class="analysis-text ${analysisClass}">${analysisText}</div>
+                                <div class="analysis-label">vs. Previous Year</div>
+                            </aside>
+                            <footer class="impact-block-footer">
+                                <a href="${ngoLink}" class="details-btn">Learn More</a>
+                            </footer>
+                        `;
+                        
+                        // 6. Add the finished block to the page
+                        gridContainer.appendChild(block);
+                    });
+
+                } catch (error) {
+                    console.error('Error fetching data:', error);
+                    gridContainer.innerHTML = '<div class="loading-text">Error loading data. Please check the sheet and try again.</div>';
+                }
+            }
+            
+            fetchData();
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Growing Together</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* General Styling */
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --background-color: #ecf0f1;
+            --card-bg-color: #ffffff;
+            --text-color: #34495e;
+            --light-gray: #bdc3c7;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation Bar (Consistent) */
+        .navbar {
+            background-color: var(--card-bg-color);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-item a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .nav-item a:hover {
+            color: var(--secondary-color);
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: var(--card-bg-color);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            list-style: none;
+            min-width: 300px;
+            border-radius: 5px;
+            padding: 0.5rem 0;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+        
+        .dropdown-menu li a {
+            display: block;
+            padding: 0.75rem 1.5rem;
+            white-space: nowrap;
+        }
+        
+        .dropdown-menu li a span {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--light-gray);
+            font-weight: 400;
+        }
+
+        /* About Page Content */
+        .about-container {
+            padding: 4rem 0;
+        }
+        
+        .about-content-box {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--card-bg-color);
+            padding: 2.5rem 3rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .page-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 2.5rem;
+            color: var(--primary-color);
+        }
+        
+        .about-content-box h3 {
+            font-size: 1.75rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--background-color);
+        }
+        
+        .about-content-box p, .about-content-box ul {
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .about-content-box ul {
+            list-style-position: inside;
+            padding-left: 1rem;
+        }
+        
+        .about-content-box li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .about-content-box strong {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="container">
+            <a href="index.html" class="nav-logo">Growing Together</a>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html">Home</a></li>
+                <li class="nav-item dropdown">
+                    <a href="#">NGOs</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="sankalptaru.html">SankalpTaru Foundation <span>Tree Plantation</span></a></li>
+                        <li><a href="indianredcross.html">Indian Red Cross Society <span>Blood Donation</span></a></li>
+                        <li><a href="pratham.html">Pratham <span>Education for underprivileged children</span></a></li>
+                        <li><a href="akshayapatra.html">Akshaya Patra Foundation <span>Meal Donation</span></a></li>
+                        <li><a href="wateraid.html">Water Aid India <span>Water, Sanitation, & Hygiene</span></a></li>
+                    </ul>
+                </li>
+                <li class="nav-item"><a href="impact-analysis.html">Impact Analysis</a></li>
+                <li class="nav-item"><a href="about.html">About Us</a></li>
+<li class="nav-item"><a href="pledge.html">Pledge Now</a></li>
+                <li class="nav-item"><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main class="about-container">
+        <div class="container">
+            <div class="about-content-box">
+                <h2 class="page-title">About This Project</h2>
+
+                <section>
+                    <h3>Our Project</h3>
+                    <p>This website is an academic project created for the course, "<strong>Community Engagement Project: Digital Empowerment: Building Skills for a Connected Community</strong>."</p>
+                    <p>Our goal is to explore and highlight the tangible results of community engagement programs by showcasing the work of five dedicated non-governmental organizations:</p>
+                    <ul>
+                        <li>SankalpTaru Foundation</li>
+                        <li>Indian Red Cross Society</li>
+                        <li>Pratham</li>
+                        <li>Akshaya Patra Foundation</li>
+                        <li>Water Aid India</li>
+                    </ul>
+                    <p>Through this site, we aim to bring awareness to the profound and measurable impact these organizations have on our community.</p>
+                </section>
+
+                <section>
+                    <h3>The Team</h3>
+                    <p>We are a team of Second Year B.Tech Computer Engineering students (Division C) from Progressive Education Society's Modern College of Engineering.</p>
+                </section>
+
+                <section>
+                    <h3>Acknowledgements</h3>
+                    <p>We would like to extend our sincere gratitude to our professor, <strong>Mrs. Sneha Ranbhidkar</strong>, and our college, <strong>Progressive Education Society's Modern College of Engineering</strong>, for their invaluable guidance and support throughout this project.</p>
+                </section>
+                
+            </div>
+        </div>
+    </main>
+
+</body>
+</html>

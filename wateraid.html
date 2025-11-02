@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Water Aid India - Growing Together</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* General Styling */
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --background-color: #ecf0f1;
+            --card-bg-color: #ffffff;
+            --text-color: #34495e;
+            --light-gray: #bdc3c7;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation Bar (Consistent) */
+        .navbar {
+            background-color: var(--card-bg-color);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-item a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .nav-item a:hover {
+            color: var(--secondary-color);
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: var(--card-bg-color);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            list-style: none;
+            min-width: 300px;
+            border-radius: 5px;
+            padding: 0.5rem 0;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+        
+        .dropdown-menu li a {
+            display: block;
+            padding: 0.75rem 1.5rem;
+            white-space: nowrap;
+        }
+        
+        .dropdown-menu li a span {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--light-gray);
+            font-weight: 400;
+        }
+        
+        /* --- NGO Page Specific Styles --- */
+
+        /* Hero Image */
+        .hero-banner {
+            width: 100%;
+            height: 50vh; 
+            object-fit: cover; 
+            display: block;
+        }
+
+        /* Main Content Wrapper */
+        .content-wrapper {
+            max-width: 1000px;
+            margin: -5rem auto 3rem auto; 
+            position: relative;
+            z-index: 10;
+            background-color: var(--card-bg-color);
+            border-radius: 10px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            padding: 3rem;
+        }
+
+        /* Page Header */
+        .page-header {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 2px solid var(--background-color);
+        }
+
+        .ngo-logo {
+            width: 150px;
+            height: 150px;
+            object-fit: contain;
+            flex-shrink: 0;
+        }
+
+        .page-header h1 {
+            font-size: 2.8rem;
+            color: var(--primary-color);
+            line-height: 1.2;
+        }
+
+        /* Section Styling */
+        .page-section {
+            margin-bottom: 2.5rem;
+        }
+
+        .page-section h2 {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+        
+        .page-section h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .page-section p {
+            margin-bottom: 1rem;
+        }
+
+        .page-section ul {
+            list-style-position: inside;
+            padding-left: 1rem;
+        }
+        
+        .page-section li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Two-Column Layout for Story */
+        .story-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .story-layout img, .story-layout-reversed img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .story-layout-reversed {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+        
+        .story-layout-reversed img {
+            grid-column: 2 / 3; /* Image on the right */
+            grid-row: 1 / 2;
+        }
+        .story-layout-reversed div {
+            grid-column: 1 / 2; /* Text on the left */
+            grid-row: 1 / 2;
+        }
+        
+        /* Media Gallery */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .gallery-grid img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .gallery-grid img:hover {
+            transform: scale(1.05);
+        }
+
+        /* Call to Action Section */
+        .cta-section {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 3rem;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+        
+        .cta-section p {
+            font-size: 1.2rem;
+            font-style: italic;
+            max-width: 700px;
+            margin: 0 auto 1.5rem auto;
+        }
+
+        .cta-button {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+            display: inline-block;
+        }
+        
+        .cta-button:hover {
+            background-color: #2980b9;
+        }
+
+        /* Get Involved Section */
+        .get-involved-layout {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            align-items: center;
+            background-color: var(--background-color);
+            padding: 2rem;
+            border-radius: 8px;
+        }
+        
+        .get-involved-buttons {
+            display: grid;
+            gap: 1rem;
+        }
+        
+        .involved-btn {
+            background-color: var(--positive-growth, #27ae60);
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+        
+        .involved-btn.secondary {
+             background-color: var(--secondary-color);
+        }
+        
+        .involved-btn:hover {
+            opacity: 0.8;
+        }
+
+    </style>
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="container">
+            <a href="index.html" class="nav-logo">Growing Together</a>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html">Home</a></li>
+                <li class="nav-item dropdown">
+                    <a href="#">NGOs</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="sankalptaru.html">SankalpTaru Foundation <span>Tree Plantation</span></a></li>
+                        <li><a href="indianredcross.html">Indian Red Cross Society <span>Blood Donation</span></a></li>
+                        <li><a href="pratham.html">Pratham <span>Education for underprivileged children</span></a></li>
+                        <li><a href="akshayapatra.html">Akshaya Patra Foundation <span>Meal Donation</span></a></li>
+                        <li><a href="wateraid.html">Water Aid India <span>Water, Sanitation, & Hygiene</span></a></li>
+                    </ul>
+                </li>
+                <li class="nav-item"><a href="impact-analysis.html">Impact Analysis</a></li>
+                <li class="nav-item"><a href="about.html">About Us</a></li>
+                <li class="nav-item"><a href="pledge.html">Pledge Now</a></li> 
+                <li class="nav-item"><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main>
+        
+        <img src="priyankaimages/HeroWA.png" alt="Water Aid India clean water pump" class="hero-banner">
+
+        <div class="content-wrapper">
+        
+            <header class="page-header">
+                <img src="priyankaimages/wateraidlogo.jpg" alt="Water Aid India Logo" class="ngo-logo">
+                <h1>Water Aid India</h1>
+            </header>
+
+            <section class="page-section">
+                <h2>At a Glance</h2>
+                
+                <h3>Our Mission & Vision</h3>
+                <p><strong>Vision:</strong> A world where everyone, everywhere has clean water, decent toilets, and good hygiene.</p>
+                <p><strong>Mission:</strong></p>
+                <ul>
+                    <li><strong>Providing Services:</strong> Working with local partners to deliver clean water, decent toilets, and good hygiene facilities and education to communities.</li>
+                    <li><strong>Advocacy and Influencing:</strong> Working with governments and policymakers to ensure water and sanitation are prioritized, funded, and managed sustainably as a basic human right.</li>
+                    <li><strong>Building Capacity:</strong> Supporting local organizations and authorities to develop the skills and systems needed to maintain these essential services for the long term.</li>
+                </ul>
+                
+                <h3>Key Focus Areas</h3>
+                <ul>
+                    <li><strong>Geographic Focus and Universal Access:</strong> Aims to achieve universal, safe, and sustainable WASH access in focused geographic areas to influence wider progress.</li>
+                    <li><strong>WASH in Health Sector:</strong> Prioritize and influence the integration of WASH across the health sector to improve public health, ensuring healthcare facilities have reliable WASH practices.</li>
+                    <li><strong>Climate Resilience:</strong> Works to strengthen the resilience of WASH systems to climate change by implementing solutions and advocating for policies that protect services from floods and droughts.</li>
+                    <li><strong>Financing for WASH:</strong> Focuses on increasing the quantity and quality of financing for WASH projects through advocacy for government investment and private sector funding.</li>
+                </ul>
+            </section>
+
+            <section class="page-section">
+                <h2>Our Story & Approach</h2>
+                
+                <div class="story-layout">
+                    <img src="priyankaimages/About1WA.png" alt="A person drinking from a WaterAid tap">
+                    <div>
+                        <h3>Our Founding</h3>
+                        <p>WaterAid was officially established in the UK in 1981 by members of the UK water industry in response to the UN's call for action on the world water crisis. Its first projects began in Zambia and Sri Lanka. It expanded from focusing solely on water to an integrated approach that includes sanitation and hygiene (WASH) in the 1990s.</p>
+                    </div>
+                </div>
+                
+                <div class="story-layout-reversed">
+                    <img src="priyankaimages/About2WA.png" alt="A community tap installed by WaterAid">
+                    <div>
+                        <h3>Our 3-Step Approach</h3>
+                        <ul>
+                            <li><strong>1. Build:</strong> Install sustainable, inclusive infrastructure (wells, toilets) using local resources and technology.</li>
+                            <li><strong>2. Teach:</strong> Train local people (community members, mechanics, government staff) on maintenance and hygiene practices.</li>
+                            <li><strong>3. Scale:</strong> Advocate and campaign to convince governments and donors to invest more money and change policies, multiplying their impact.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3>Our Journey</h3>
+                <ul>
+                    <li><strong>1981:</strong> Founded by the UK water industry.</li>
+                    <li><strong>1995:</strong> Expanded focus to an integrated WASH approach.</li>
+                    <li><strong>2000s:</strong> Successfully advocated for sanitation to be included in global development goals.</li>
+                    <li><strong>Today:</strong> A global federation working in 30+ countries, focusing on systemic, lasting change.</li>
+                </ul>
+                
+                <h3>Our Operational Models</h3>
+                <ul>
+                    <li><strong>Build (Service Delivery):</strong> Directly implement WASH projects with local partners in focused geographic areas.</li>
+                    <li><strong>Teach (Capacity & Empowerment):</strong> Work to strengthen the skills and knowledge of everyone involved in the WASH system.</li>
+                    <li><strong>Scale (Policy & Advocacy):</strong> Use evidence from demonstration areas to influence policy and financial decisions at district, national, and global levels.</li>
+                </ul>
+            </section>
+            
+            <section class="cta-section">
+                <p>"Join hands with WaterAid to ensure that no community is deprived of the most fundamental human necessity: clean water. Your support can transform the health, dignity, and future of an entire village."</p>
+                <a href="impact-analysis.html" class="cta-button">See The Live Combined Impact Analysis</a>
+            </section>
+
+            <section class="page-section">
+                <h2>Glimpse of Their Work</h2>
+                <div class="gallery-grid">
+                    <img src="priyankaimages/Gallery1WA.png" alt="Gallery Image 1">
+                    <img src="priyankaimages/Gallery2WA.png" alt="Gallery Image 2">
+                    <img src="priyankaimages/Gallery3WA.png" alt="Gallery Image 3">
+                    <img src="priyankaimages/Gallery4WA.png" alt="Gallery Image 4">
+                </div>
+            </section>
+
+            <section class="page-section">
+                <h2>Get Involved</h2>
+                <div class="get-involved-layout">
+                    <div>
+                        <p>You can get involved in several ways:</p>
+                        <ul>
+                            <li><strong>DONATE:</strong> Fund life-saving water and hygiene projects.</li>
+                            <li><strong>CAMPAIGN:</strong> Use your voice to secure lasting political change.</li>
+                            <li><strong>FUNDRAISE:</strong> Start an event to empower a community's future.</li>
+                        </ul>
+                    </div>
+                    <div class="get-involved-buttons">
+                        <a href="https://www.wateraid.org/in/" target="_blank" class="involved-btn">Visit Official Website</a>
+                        <a href="pledge.html" class="involved-btn secondary">Take the Pledge</a>
+                    </div>
+                </div>
+            </section>
+        
+        </div>
+    </main>
+
+</body>
+</html>

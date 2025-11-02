@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Akshaya Patra Foundation - Growing Together</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* General Styling */
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --background-color: #ecf0f1;
+            --card-bg-color: #ffffff;
+            --text-color: #34495e;
+            --light-gray: #bdc3c7;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation Bar (Consistent) */
+        .navbar {
+            background-color: var(--card-bg-color);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-item a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .nav-item a:hover {
+            color: var(--secondary-color);
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: var(--card-bg-color);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            list-style: none;
+            min-width: 300px;
+            border-radius: 5px;
+            padding: 0.5rem 0;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+        
+        .dropdown-menu li a {
+            display: block;
+            padding: 0.75rem 1.5rem;
+            white-space: nowrap;
+        }
+        
+        .dropdown-menu li a span {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--light-gray);
+            font-weight: 400;
+        }
+        
+        /* --- NGO Page Specific Styles --- */
+
+        /* Hero Image */
+        .hero-banner {
+            width: 100%;
+            height: 50vh; 
+            object-fit: cover; 
+            display: block;
+        }
+
+        /* Main Content Wrapper */
+        .content-wrapper {
+            max-width: 1000px;
+            margin: -5rem auto 3rem auto; 
+            position: relative;
+            z-index: 10;
+            background-color: var(--card-bg-color);
+            border-radius: 10px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            padding: 3rem;
+        }
+
+        /* Page Header */
+        .page-header {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 2px solid var(--background-color);
+        }
+
+        .ngo-logo {
+            width: 150px;
+            height: 150px;
+            object-fit: contain;
+            flex-shrink: 0;
+        }
+
+        .page-header h1 {
+            font-size: 2.8rem;
+            color: var(--primary-color);
+            line-height: 1.2;
+        }
+
+        /* Section Styling */
+        .page-section {
+            margin-bottom: 2.5rem;
+        }
+
+        .page-section h2 {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+        
+        .page-section h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .page-section p {
+            margin-bottom: 1rem;
+        }
+
+        .page-section ul {
+            list-style-position: inside;
+            padding-left: 1rem;
+        }
+        
+        .page-section li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Two-Column Layout for Story */
+        .story-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .story-layout img, .story-layout-reversed img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .story-layout-reversed {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+        
+        .story-layout-reversed img {
+            grid-column: 2 / 3; /* Image on the right */
+            grid-row: 1 / 2;
+        }
+        .story-layout-reversed div {
+            grid-column: 1 / 2; /* Text on the left */
+            grid-row: 1 / 2;
+        }
+        
+        /* Media Gallery */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .gallery-grid img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .gallery-grid img:hover {
+            transform: scale(1.05);
+        }
+
+        /* Call to Action Section */
+        .cta-section {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 3rem;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+        
+        .cta-section p {
+            font-size: 1.2rem;
+            font-style: italic;
+            max-width: 700px;
+            margin: 0 auto 1.5rem auto;
+        }
+
+        .cta-button {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+            display: inline-block;
+        }
+        
+        .cta-button:hover {
+            background-color: #2980b9;
+        }
+
+        /* Get Involved Section */
+        .get-involved-layout {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            align-items: center;
+            background-color: var(--background-color);
+            padding: 2rem;
+            border-radius: 8px;
+        }
+        
+        .get-involved-buttons {
+            display: grid;
+            gap: 1rem;
+        }
+        
+        .involved-btn {
+            background-color: var(--positive-growth, #27ae60);
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+        
+        .involved-btn.secondary {
+             background-color: var(--secondary-color);
+        }
+        
+        .involved-btn:hover {
+            opacity: 0.8;
+        }
+
+    </style>
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="container">
+            <a href="index.html" class="nav-logo">Growing Together</a>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html">Home</a></li>
+                <li class="nav-item dropdown">
+                    <a href="#">NGOs</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="sankalptaru.html">SankalpTaru Foundation <span>Tree Plantation</span></a></li>
+                        <li><a href="indianredcross.html">Indian Red Cross Society <span>Blood Donation</span></a></li>
+                        <li><a href="pratham.html">Pratham <span>Education for underprivileged children</span></a></li>
+                        <li><a href="akshayapatra.html">Akshaya Patra Foundation <span>Meal Donation</span></a></li>
+                        <li><a href="wateraid.html">Water Aid India <span>Water, Sanitation, & Hygiene</span></a></li>
+                    </ul>
+                </li>
+                <li class="nav-item"><a href="impact-analysis.html">Impact Analysis</a></li>
+                <li class="nav-item"><a href="about.html">About Us</a></li>
+                <li class="nav-item"><a href="pledge.html">Pledge Now</a></li> 
+                <li class="nav-item"><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main>
+        
+        <img src="samarthimages/AP Hero Image.jpg" alt="Akshaya Patra mid-day meals" class="hero-banner">
+
+        <div class="content-wrapper">
+        
+            <header class="page-header">
+                <img src="samarthimages/akshayapatralogo.jpg" alt="Akshaya Patra Foundation Logo" class="ngo-logo">
+                <h1>The Akshaya Patra Foundation</h1>
+            </header>
+
+            <section class="page-section">
+                <h2>At a Glance</h2>
+                
+                <h3>Our Mission & Vision</h3>
+                <p><strong>Mission:</strong> To provide hot, nutritious, and tasty mid-day meals to children every school day, as an incentive to attend school, by implementing the Government of India's PM POSHAN (formerly Mid-Day Meal) initiative.</p>
+                <p><strong>Vision:</strong> No child in India shall be deprived of education because of hunger.</p>
+                
+                <h3>Key Focus Areas</h3>
+                <ul>
+                    <li>Mid-Day Meal Programme</li>
+                    <li>Anganwadi Feeding</li>
+                    <li>Food Relief (during crises)</li>
+                    <li>Kitchen Operations (Centralised & Decentralised)</li>
+                    <li>Public-Private Partnerships</li>
+                    <li>Sustainable Development Goals (SDG 2 & SDG 4)</li>
+                </ul>
+            </section>
+
+            <section class="page-section">
+                <h2>Our Story & Approach</h2>
+                
+                <div class="story-layout">
+                    <img src="samarthimages/Aboutap1.png" alt="Akshaya Patra large-scale kitchen">
+                    <div>
+                        <p>The Akshaya Patra Foundation, established in 2000, began by serving 1,500 children in five government schools in Bengaluru. Today, it serves over 2.35 million children across India.</p>
+                        <p>TAPF operates on a Public-Private Partnership (PPP) model in collaboration with the Government of India and various state governments. Its ISO-certified kitchens and use of technology ensure the safe and efficient preparation of meals at scale.</p>
+                    </div>
+                </div>
+                
+                <div class="story-layout-reversed">
+                    <img src="samarthimages/Aboutap2.png" alt="Children enjoying Akshaya Patra meals">
+                    <div>
+                        <h3>Our Journey:</h3>
+                        <ul>
+                            <li><strong>2000:</strong> Foundation established, serving 1,500 children.</li>
+                            <li><strong>2004:</strong> Expanded operations across multiple states.</li>
+                            <li><strong>2015:</strong> Achieved milestone of serving 2 billion cumulative meals.</li>
+                            <li><strong>2020:</strong> Delivered millions of food relief meals during COVID-19.</li>
+                            <li><strong>2023:</strong> Reached over 2.35 million children.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3>Our Operational Models</h3>
+                <ul>
+                    <li>Centralised Kitchen Model: Large-scale kitchens for urban areas.</li>
+                    <li>Decentralised Kitchen Model: Community-based kitchens for remote areas.</li>
+                    <li>Food Safety & Quality Control: Stringent hygiene standards.</li>
+                    <li>Partnerships & Funding: Supported by corporates and government.</li>
+                </ul>
+            </section>
+            
+            <section class="cta-section">
+                <p>"Join hands with The Akshaya Patra Foundation to ensure that no child in India goes to school hungry. Your support can nourish a child's education and future."</p>
+                <a href="impact-analysis.html" class="cta-button">See The Live Combined Impact Analysis</a>
+            </section>
+
+            <section class="page-section">
+                <h2>Glimpse of Their Work</h2>
+                <div class="gallery-grid">
+                    <img src="samarthimages/Galleryap1.png" alt="Gallery Image 1">
+                    <img src="samarthimages/Galleryap2.png" alt="Gallery Image 3">
+                    <img src="samarthimages/Galleryap3.png" alt="Gallery Image 3">
+                    <img src="samarthimages/Galleryap4.png" alt="Gallery Image 4">
+                </div>
+            </section>
+
+            <section class="page-section">
+                <h2>Get Involved</h2>
+                <div class="get-involved-layout">
+                    <div>
+                        <p>You can contribute by donating, volunteering, supporting kitchen development, or collaborating under corporate social responsibility (CSR) programs.</p>
+                    </div>
+                    <div class="get-involved-buttons">
+                        <a href="https://www.akshayapatra.org" target="_blank" class="involved-btn">Visit Official Website</a>
+                        <a href="pledge.html" class="involved-btn secondary">Take the Pledge</a>
+                    </div>
+                </div>
+            </section>
+        
+        </div>
+    </main>
+
+</body>
+</html>
